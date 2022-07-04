@@ -90,6 +90,15 @@ export default function Footer() {
               objectFit="cover"
             />
           </AspectRatio>
+          <AspectRatio maxW="250px"  width="full" ratio={212 / 44}  >
+            <Link href="https://vercel.com/home?utm_source=next-site&utm_medium=footer&utm_campaign=next-website" hideIcon >
+            <Image
+              src="/images/vercel_logo.svg"
+              alt="vercel logo"
+              objectFit="cover"
+              />
+            </Link>
+          </AspectRatio>
         </Stack>
       </Container>
     </Box>
