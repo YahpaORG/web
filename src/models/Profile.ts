@@ -1,22 +1,63 @@
-import mongoose from 'mongoose'
+import mongoose, { Model } from 'mongoose'
 
-export interface Profiles extends mongoose.Document {
+export interface Profile extends mongoose.Document {
   clerkId: string
-  email: string
+  first_name: string
+  last_name: string
+  occupation: string
+  primary_address: string
+  email_address: string
+  phone_number: string
+  website_address: string
+  languages: string[]
+  about_me: string
 }
 
-const ProfileSchema = new mongoose.Schema<Profiles>({
+const ProfileSchema = new mongoose.Schema<Profile>({
   clerkId: {
     type: String,
     required: true,
     unique: true,
   },
-  email: {
+  first_name: {
     type: String,
     required: true,
   },
+  last_name: {
+    type: String,
+    required: true,
+  },
+  occupation: {
+    type: String,
+    required: true,
+  },
+  primary_address: {
+    type: String,
+    required: true,
+  },
+  email_address: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  phone_number: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  website_address: {
+    type: String,
+    required: true,
+  },
+  languages: {
+    type: [String],
+    required: true,
+  },
+  about_me: {
+    type: String,
+    required: false,
+  },
 })
 
-export const ProfileModel =
-  mongoose.model<Profiles>('Profiles', ProfileSchema) ||
-  mongoose.models.Profiles
+export const ProfileModel: Model<Profile> =
+  mongoose.models.Profiles || mongoose.model<Profile>('Profiles', ProfileSchema)

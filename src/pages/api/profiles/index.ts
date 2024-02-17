@@ -26,9 +26,12 @@ export default async function profilesHandler(
 
       case 'POST': {
         try {
-          const { email } = req.body
-          const profile = await ProfileModel.create({ clerkId: userId, email })
-          return res.status(201).json({ success: true, profile })
+          const body = req.body
+          const profile = await ProfileModel.create({
+            clerkId: userId,
+            ...body,
+          })
+          return res.status(201).json({ success: true, data: profile })
         } catch (error) {
           res.status(400).json({ success: false, error })
         }

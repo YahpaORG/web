@@ -9,8 +9,13 @@ import { NextIntlClientProvider } from 'next-intl'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import theme from 'styles/theme'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import isDev from 'utils/isDev'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 emailjs.init(process?.env?.emailJsUserID as string)
+
+const queryClient = new QueryClient()
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -37,11 +42,14 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         locale={router.locale}
         messages={pageProps.messages}
       >
-        <ChakraProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <ChakraProvider theme={theme}>
           <Layout>
             <Component {...pageProps} />
           </Layout>
         </ChakraProvider>
+              {isDev() && <ReactQueryDevtools initialIsOpen />}
+        </QueryClientProvider>
       </NextIntlClientProvider>
     </ClerkProvider>
   )

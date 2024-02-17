@@ -19,13 +19,9 @@ export default async function profilesHandler(
     switch (req.method) {
       case 'GET': {
         try {
-          const profile = await ProfileModel.findById(req.query.id)
+          const profile = await ProfileModel.findOne({ clerkId: req.query.id })
 
-          if (!profile) {
-            return res.status(400).json({ success: false })
-          }
-
-          res.status(200).json({ success: true, data: profile })
+          res.status(200).json(profile)
         } catch (error) {
           res.status(400).json({ success: false, error })
         }
