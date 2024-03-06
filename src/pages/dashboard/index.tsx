@@ -1,11 +1,21 @@
-import { Box, Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
+import {
+  Box,
+  Container,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react'
 import MembersPanel from 'components/Dashboard/MembersPanel'
 import ProfilePanel from 'components/Dashboard/ProfilePanel'
-import Page from 'components/Page'
+import DashboardLayout from 'components/Layouts/DashboardLayout'
 import PageTitle from 'components/PageTitle'
 import Section from 'components/Section'
 import { useRole } from 'hooks/useRole'
 import { GetStaticPropsContext } from 'next'
+import { NextPageWithLayout } from 'pages/_app'
+import { ReactElement } from 'react'
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return {
@@ -17,11 +27,11 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   }
 }
 
-export default function DashboardPage() {
+const DashboardPage: NextPageWithLayout = () => {
   const { isAdmin } = useRole()
 
   return (
-    <Page>
+    <Container p={0} maxW="full" h="full">
       <PageTitle title={'Dashboard'} />
       <Section>
         <Tabs defaultIndex={0}>
@@ -43,6 +53,12 @@ export default function DashboardPage() {
           </TabPanels>
         </Tabs>
       </Section>
-    </Page>
+    </Container>
   )
 }
+
+DashboardPage.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>
+}
+
+export default DashboardPage

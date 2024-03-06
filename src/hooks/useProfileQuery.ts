@@ -12,7 +12,8 @@ async function fetchProfile(clerkId?: string): Promise<Profile> {
 export default function useProfileQuery() {
   const { user } = useUser()
   return useQuery({
-    queryKey: fetchProfileQueryKey,
+    queryKey: [fetchProfileQueryKey, user?.id],
     queryFn: () => fetchProfile(user?.id),
+    refetchOnMount: true,
   })
 }

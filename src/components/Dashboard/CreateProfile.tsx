@@ -13,13 +13,7 @@ export default function CreateProfile() {
         <Stack alignItems="center" py={5}>
           <Heading fontSize="2xl">You do not have a profile yet.</Heading>
           <Box>
-            <Button
-              colorScheme="green"
-              onClick={() => {
-                console.log('clicked!')
-                setShowForm(true)
-              }}
-            >
+            <Button colorScheme="green" onClick={() => setShowForm(true)}>
               Create Profile
             </Button>
           </Box>
