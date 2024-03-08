@@ -16,16 +16,26 @@ import {
   Icon,
   useToast,
 } from '@chakra-ui/react'
+import { useUser } from '@clerk/nextjs'
 import useCreateProfileMutation, {
   CreateProfileFormData,
 } from 'hooks/useCreateProfileMutation'
+import { useUserProfileQuery } from 'hooks/useUserProfileQuery'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { BiErrorCircle } from 'react-icons/bi'
 import { BsCheck2Circle, BsPerson } from 'react-icons/bs'
 import { MdOutlineEmail, MdLocalPhone } from 'react-icons/md'
+import ErrorPanel from './ErrorPanel'
+import LoadingPanel from './LoadingPanel'
 
 export default function CreateProfileForm() {
+  const { user } = useUser()
+  const {
+    data: profileExists,
+    isLoading,
+    error,
+  } = useUserProfileQuery(user?.id)
   const {
     handleSubmit,
     register,
@@ -80,6 +90,12 @@ export default function CreateProfileForm() {
     })
 
   const OCCUPATIONS = ['Job A', 'Job B', 'Job C']
+
+  if (error) return <ErrorPanel />
+  if (isLoading) return <LoadingPanel />
+  if (profileExists) {
+    router.push('/dashboard')
+  }
 
   return (
     <Box

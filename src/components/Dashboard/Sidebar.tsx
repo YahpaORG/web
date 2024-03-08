@@ -70,11 +70,6 @@ export default function Sidebar() {
             {isAdmin && (
               <DashboardLink href="/dashboard/members">Members</DashboardLink>
             )}
-            {isAdmin && (
-              <DashboardLink href="/dashboard/submissions">
-                Submissions
-              </DashboardLink>
-            )}
           </Stack>
         </Stack>
         <Stack>
