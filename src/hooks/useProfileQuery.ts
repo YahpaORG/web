@@ -1,4 +1,3 @@
-import { useUser } from '@clerk/nextjs'
 import { useQuery } from '@tanstack/react-query'
 import { Profile } from 'models/Profile'
 
@@ -9,11 +8,9 @@ async function fetchProfile(clerkId?: string): Promise<Profile> {
   return response.json()
 }
 
-export default function useProfileQuery() {
-  const { user } = useUser()
+export default function useProfileQuery(userId?: string) {
   return useQuery({
-    queryKey: [fetchProfileQueryKey, user?.id],
-    queryFn: () => fetchProfile(user?.id),
-    refetchOnMount: true,
+    queryKey: [fetchProfileQueryKey, userId],
+    queryFn: () => fetchProfile(userId),
   })
 }

@@ -19,6 +19,7 @@ import {
 import useCreateProfileMutation, {
   CreateProfileFormData,
 } from 'hooks/useCreateProfileMutation'
+import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { BiErrorCircle } from 'react-icons/bi'
 import { BsCheck2Circle, BsPerson } from 'react-icons/bs'
@@ -32,6 +33,7 @@ export default function CreateProfileForm() {
     formState: { errors, isSubmitting },
   } = useForm<CreateProfileFormData>()
   const toast = useToast()
+  const router = useRouter()
 
   const createProfileMutation = useCreateProfileMutation()
 
@@ -50,7 +52,12 @@ export default function CreateProfileForm() {
           </Alert>
         ),
       })
-      createProfileMutation.mutate(formData, { onSuccess: () => reset() })
+      createProfileMutation.mutate(formData, {
+        onSuccess: () => {
+          reset()
+          router.push('/dashboard')
+        },
+      })
     } catch (e) {
       onError()
       console.log(e)

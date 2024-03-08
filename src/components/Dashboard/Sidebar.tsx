@@ -1,19 +1,18 @@
 import {
   Avatar,
-  Box,
   Button,
   Divider,
+  HStack,
   Heading,
-  List,
-  ListItem,
   Stack,
   Text,
 } from '@chakra-ui/react'
+import { useClerk, useUser } from '@clerk/nextjs'
 import Image from 'components/Image'
-import { useAuth, useClerk, useUser } from '@clerk/nextjs'
+import { useRole } from 'hooks/useRole'
+import { useTranslations } from 'next-intl'
 import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
-import { useTranslations } from 'next-intl'
 import { MdOutlineExitToApp } from 'react-icons/md'
 
 function DashboardLink({
@@ -43,7 +42,7 @@ export default function Sidebar() {
   const t = useTranslations('App')
   const { user } = useUser()
   const { signOut } = useClerk()
-  console.log(user)
+  const { isAdmin } = useRole()
 
   return (
     <Stack
@@ -68,21 +67,29 @@ export default function Sidebar() {
         <Stack as="nav">
           <Stack flexDirection="column" gap={2}>
             <DashboardLink href="/dashboard">My Profile</DashboardLink>
-            <DashboardLink href="/dashboard/members">Members</DashboardLink>
-            <DashboardLink href="/dashboard/members">Submissions</DashboardLink>
+            {isAdmin && (
+              <DashboardLink href="/dashboard/members">Members</DashboardLink>
+            )}
+            {isAdmin && (
+              <DashboardLink href="/dashboard/members">
+                Submissions
+              </DashboardLink>
+            )}
           </Stack>
         </Stack>
         <Stack>
-          <Button
-            onClick={() => signOut()}
-            p={2}
-            rightIcon={<MdOutlineExitToApp size={18} />}
-            fontWeight={600}
-            borderRadius="lg"
-            colorScheme="red"
-          >
-            Sign Out
-          </Button>
+          <HStack justifyContent="center">
+            <Button
+              onClick={() => signOut()}
+              px={4}
+              rightIcon={<MdOutlineExitToApp size={18} />}
+              fontWeight={600}
+              borderRadius="lg"
+              colorScheme="red"
+            >
+              Sign Out
+            </Button>
+          </HStack>
           <Stack
             as={Link}
             flexDirection="row"

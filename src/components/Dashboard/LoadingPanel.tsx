@@ -1,8 +1,8 @@
-import { TabPanel, Center, Spinner } from '@chakra-ui/react'
+import { Center, Spinner } from '@chakra-ui/react'
 
 export default function LoadingPanel() {
   return (
-    <TabPanel>
+    <>
       <Center p={12}>
         <Spinner
           thickness="4px"
@@ -12,6 +12,6 @@ export default function LoadingPanel() {
           size="xl"
         />
       </Center>
-    </TabPanel>
+    </>
   )
 }

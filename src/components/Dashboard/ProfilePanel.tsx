@@ -1,17 +1,20 @@
-import { Box, Button, Heading, Stack, TabPanel, Text } from '@chakra-ui/react'
+import { Box, Button, Heading, Stack, Text } from '@chakra-ui/react'
 import useProfileQuery from 'hooks/useProfileQuery'
 import ErrorPanel from './ErrorPanel'
 import LoadingPanel from './LoadingPanel'
 import Link from 'next/link'
+import { useUser } from '@clerk/nextjs'
+import Section from 'components/Section'
 
 export default function ProfilePanel() {
-  const { data: profile, error, isLoading } = useProfileQuery()
+  const { user } = useUser()
+  const { data: profile, error, isLoading } = useProfileQuery(user?.id)
 
   if (error) return <ErrorPanel />
   if (isLoading) return <LoadingPanel />
 
   return (
-    <TabPanel>
+    <Section>
       {profile ? (
         <>
           <Text>
@@ -33,6 +36,6 @@ export default function ProfilePanel() {
           </Box>
         </Stack>
       )}
-    </TabPanel>
+    </Section>
   )
 }

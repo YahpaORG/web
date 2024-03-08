@@ -1,18 +1,7 @@
-import {
-  Box,
-  Container,
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-} from '@chakra-ui/react'
-import MembersPanel from 'components/Dashboard/MembersPanel'
+import { Container } from '@chakra-ui/react'
 import ProfilePanel from 'components/Dashboard/ProfilePanel'
 import DashboardLayout from 'components/Layouts/DashboardLayout'
 import PageTitle from 'components/PageTitle'
-import Section from 'components/Section'
-import { useRole } from 'hooks/useRole'
 import { GetStaticPropsContext } from 'next'
 import { NextPageWithLayout } from 'pages/_app'
 import { ReactElement } from 'react'
@@ -28,31 +17,17 @@ export async function getStaticProps(context: GetStaticPropsContext) {
 }
 
 const DashboardPage: NextPageWithLayout = () => {
-  const { isAdmin } = useRole()
-
   return (
-    <Container p={0} maxW="full" h="full">
+    <Container
+      p={0}
+      maxW="full"
+      h="full"
+      display="flex"
+      flex={1}
+      flexDir={'column'}
+    >
       <PageTitle title={'Dashboard'} />
-      <Section>
-        <Tabs defaultIndex={0}>
-          <TabList>
-            <Tab>My Profile</Tab>
-            <Tab>Settings</Tab>
-            {isAdmin && <Tab>Submissions</Tab>}
-            {isAdmin && <Tab>Members</Tab>}
-          </TabList>
-          <TabPanels>
-            <ProfilePanel />
-            <TabPanel>
-              <Box>My Settings</Box>
-            </TabPanel>
-            <TabPanel>
-              <Box>All Submissions Here</Box>
-            </TabPanel>
-            <MembersPanel />
-          </TabPanels>
-        </Tabs>
-      </Section>
+      <ProfilePanel />
     </Container>
   )
 }
