@@ -39,7 +39,6 @@ export default function CreateProfileForm() {
 
   const onFormSubmit = async (formData: CreateProfileFormData) => {
     try {
-      reset()
       toast({
         position: 'bottom',
         duration: 3000,
