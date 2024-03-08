@@ -11,6 +11,7 @@ export interface Profile extends mongoose.Document {
   website_address: string
   languages: string[]
   about_me: string
+  status: 'pending' | 'active' | 'rejected'
 }
 
 const ProfileSchema = new mongoose.Schema<Profile>({
@@ -56,6 +57,10 @@ const ProfileSchema = new mongoose.Schema<Profile>({
   about_me: {
     type: String,
     required: false,
+  },
+  status: {
+    type: String,
+    default: 'pending',
   },
 })
 

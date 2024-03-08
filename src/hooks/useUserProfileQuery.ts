@@ -8,7 +8,7 @@ async function fetchProfile(clerkId?: string): Promise<Profile> {
   return response.json()
 }
 
-export default function useProfileQuery(userId?: string) {
+export function useUserProfileQuery(userId?: string) {
   return useQuery({
     queryKey: [fetchProfileQueryKey, userId],
     queryFn: () => fetchProfile(userId),

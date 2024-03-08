@@ -1,5 +1,5 @@
 import { Box, Button, Heading, Stack, Text } from '@chakra-ui/react'
-import useProfileQuery from 'hooks/useProfileQuery'
+import { useUserProfileQuery } from 'hooks/useUserProfileQuery'
 import ErrorPanel from './ErrorPanel'
 import LoadingPanel from './LoadingPanel'
 import Link from 'next/link'
@@ -8,7 +8,7 @@ import Section from 'components/Section'
 
 export default function ProfilePanel() {
   const { user } = useUser()
-  const { data: profile, error, isLoading } = useProfileQuery(user?.id)
+  const { data: profile, error, isLoading } = useUserProfileQuery(user?.id)
 
   if (error) return <ErrorPanel />
   if (isLoading) return <LoadingPanel />

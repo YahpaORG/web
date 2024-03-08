@@ -3,7 +3,7 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query'
-import { fetchProfileQueryKey } from './useProfileQuery'
+import { fetchProfileQueryKey } from './useUserProfileQuery'
 
 export type CreateProfileFormData = {
   first_name: string

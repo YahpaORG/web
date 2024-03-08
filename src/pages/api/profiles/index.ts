@@ -17,7 +17,7 @@ export default async function profilesHandler(
       case 'GET': {
         try {
           const profiles = await ProfileModel.find({})
-          res.status(200).json({ success: true, data: profiles })
+          res.status(200).json(profiles)
         } catch (error) {
           res.status(400).json({ success: false, error })
         }
