@@ -42,14 +42,14 @@ export function DeleteMemberProfileModal({
 
           <ModalFooter>
             <Button
-              colorScheme="blue"
+              colorScheme="red"
               mr={3}
               onClick={() => {
                 onConfirm()
                 onClose()
               }}
             >
-              Confirm
+              Delete
             </Button>
             <Button variant="ghost" onClick={onClose}>
               Cancel
