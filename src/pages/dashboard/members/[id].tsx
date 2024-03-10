@@ -1,5 +1,5 @@
-import ErrorPanel from 'components/Dashboard/ErrorPanel'
-import LoadingPanel from 'components/Dashboard/LoadingPanel'
+import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
+import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
 import DashboardLayout from 'components/Layouts/DashboardLayout'
 import Page from 'components/Page'
 import PageTitle from 'components/PageTitle'
@@ -28,8 +28,8 @@ const MemberPage: NextPageWithLayout = () => {
   const { data: profile, isLoading, error } = useUserProfileQuery(userId)
 
   if (!isAdmin) router.push('/dashboard')
-  if (error) return <ErrorPanel />
-  if (isLoading || !isAdmin) return <LoadingPanel />
+  if (error) return <ErrorMessage />
+  if (isLoading || !isAdmin) return <LoadingSpinner />
 
   return (
     <Page p={0} maxW="full" h="full" display="flex" flex={1} flexDir={'column'}>

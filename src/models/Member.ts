@@ -64,6 +64,7 @@ const MemberSchema = new mongoose.Schema<MemberDocument>({
   },
   status: {
     type: String,
+    enum: ['pending', 'active', 'rejected'],
     default: 'pending',
   },
   created_at: {

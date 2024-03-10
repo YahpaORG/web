@@ -1,6 +1,6 @@
 import { useProfilesQuery } from 'hooks/useProfilesQuery'
-import ErrorPanel from './ErrorPanel'
-import LoadingPanel from './LoadingPanel'
+import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
+import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
 import {
   Table,
   Thead,
@@ -14,11 +14,11 @@ import {
   HStack,
 } from '@chakra-ui/react'
 import { MdEdit } from 'react-icons/md'
-import { DeleteProfileModalButton } from './DeleteProfileModal'
+import { DeleteMemberProfileModal } from './DeleteMemberProfileModal'
 import { useDeleteProfileMutation } from 'hooks/useDeleteProfileMutation'
 import { useRouter } from 'next/router'
 
-export function ProfilesTable() {
+export function MembersTable() {
   const router = useRouter()
   const {
     data: profiles,
@@ -38,8 +38,8 @@ export function ProfilesTable() {
     })
   }
 
-  if (error) return <ErrorPanel />
-  if (isLoading || isRefetching) return <LoadingPanel />
+  if (error) return <ErrorMessage />
+  if (isLoading || isRefetching) return <LoadingSpinner />
 
   return (
     <TableContainer>
@@ -56,7 +56,7 @@ export function ProfilesTable() {
         </Thead>
         <Tbody>
           {profiles?.map((profile) => (
-            <Tr key={profile._id}>
+            <Tr key={profile.clerkId}>
               <Td>{profile.clerkId}</Td>
               <Td>{`${profile.first_name} ${profile.last_name}`}</Td>
               <Td>{profile.email_address}</Td>
@@ -70,8 +70,8 @@ export function ProfilesTable() {
                       router.push(`/dashboard/members/${profile.clerkId}`)
                     }
                   />
-                  <DeleteProfileModalButton
-                    onConfirm={() => handleDeleteProfile(profile._id)}
+                  <DeleteMemberProfileModal
+                    onConfirm={() => handleDeleteProfile(profile.clerkId)}
                   />
                 </HStack>
               </Td>

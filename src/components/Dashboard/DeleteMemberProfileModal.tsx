@@ -16,7 +16,7 @@ type DeleteProfileModalButtonProps = {
   onConfirm: () => void
 }
 
-export function DeleteProfileModalButton({
+export function DeleteMemberProfileModal({
   onConfirm,
 }: DeleteProfileModalButtonProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()

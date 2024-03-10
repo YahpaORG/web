@@ -17,37 +17,37 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { useUser } from '@clerk/nextjs'
-import useCreateProfileMutation, {
-  CreateProfileFormData,
-} from 'hooks/useCreateProfileMutation'
+import useCreateProfileMutation from 'hooks/useCreateProfileMutation'
 import { useUserProfileQuery } from 'hooks/useUserProfileQuery'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { BiErrorCircle } from 'react-icons/bi'
 import { BsCheck2Circle, BsPerson } from 'react-icons/bs'
 import { MdOutlineEmail, MdLocalPhone } from 'react-icons/md'
-import ErrorPanel from './ErrorPanel'
-import LoadingPanel from './LoadingPanel'
+import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
+import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
+import { CreateMemberInput } from 'types/create-form'
 
-export default function CreateProfileForm() {
-  const { user } = useUser()
+export function CreateMemberProfileForm() {
+  const { user, isLoaded } = useUser()
   const {
     data: profileExists,
     isLoading,
     error,
   } = useUserProfileQuery(user?.id)
+
   const {
     handleSubmit,
     register,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<CreateProfileFormData>()
+  } = useForm<CreateMemberInput>()
   const toast = useToast()
   const router = useRouter()
 
   const createProfileMutation = useCreateProfileMutation()
 
-  const onFormSubmit = async (formData: CreateProfileFormData) => {
+  const onFormSubmit = async (formData: CreateMemberInput) => {
     try {
       toast({
         position: 'bottom',
@@ -91,8 +91,8 @@ export default function CreateProfileForm() {
 
   const OCCUPATIONS = ['Job A', 'Job B', 'Job C']
 
-  if (error) return <ErrorPanel />
-  if (isLoading) return <LoadingPanel />
+  if (error) return <ErrorMessage />
+  if (isLoading || !isLoaded) return <LoadingSpinner />
   if (profileExists) {
     router.push('/dashboard')
   }

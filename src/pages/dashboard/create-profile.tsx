@@ -1,4 +1,4 @@
-import CreateProfileForm from 'components/Dashboard/CreateProfileForm'
+import { CreateMemberProfileForm } from 'components/Dashboard/CreateMemberProfileForm'
 import DashboardLayout from 'components/Layouts/DashboardLayout'
 import Page from 'components/Page'
 import PageTitle from 'components/PageTitle'
@@ -22,7 +22,7 @@ const CreateProfilePage: NextPageWithLayout = () => {
     <Page p={0} maxW="full" h="full" display="flex" flex={1} flexDir={'column'}>
       <PageTitle title={'Create Profile'} />
       <Section>
-        <CreateProfileForm />
+        <CreateMemberProfileForm />
       </Section>
     </Page>
   )

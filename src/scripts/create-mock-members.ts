@@ -11,7 +11,7 @@ const connectDB = async () => {
   try {
     await mongoose.connect(MONGO_URI as string)
     console.log('Connected to DB')
-    await createMockUsers(10)
+    await createMockMembers(10)
   } catch (error) {
     console.error(error)
   } finally {
@@ -20,10 +20,10 @@ const connectDB = async () => {
   }
 }
 
-async function createMockUsers(count: number) {
-  const mockProfiles = []
+async function createMockMembers(count: number) {
+  const mockMembers = []
   for (let i = 0; i < count; i++) {
-    const profile = {
+    const member = {
       clerkId: faker.string.uuid(),
       first_name: faker.person.firstName(),
       last_name: faker.person.lastName(),
@@ -38,13 +38,14 @@ async function createMockUsers(count: number) {
         '简体中文',
         'Tiếng Việt',
       ]),
-      status: faker.helpers.arrayElements(['pending', 'active', 'rejected']),
+      status: faker.helpers.arrayElement(['pending', 'active', 'rejected']),
+      created_at: faker.date.recent(),
     }
-    mockProfiles.push(profile)
+    mockMembers.push(member)
   }
 
-  await MemberModel.insertMany(mockProfiles)
-  console.log(`Successfully created ${mockProfiles.length} mock profiles`)
+  await MemberModel.insertMany(mockMembers)
+  console.log(`Successfully created ${mockMembers.length} mock profiles`)
 }
 
 connectDB()

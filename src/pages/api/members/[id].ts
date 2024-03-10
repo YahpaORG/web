@@ -30,8 +30,8 @@ export default async function profilesHandler(
 
       case 'PUT': {
         try {
-          const profile = await MemberModel.findByIdAndUpdate(
-            req.query.id,
+          const profile = await MemberModel.findOneAndUpdate(
+            { clerkId: req.query.id },
             req.body,
             {
               new: true,
@@ -53,7 +53,7 @@ export default async function profilesHandler(
       case 'DELETE': {
         try {
           const deletedProfile = await MemberModel.deleteOne({
-            _id: req.query.id,
+            clerkId: req.query.id,
           })
 
           if (!deletedProfile) {

@@ -1,5 +1,5 @@
 import { Container } from '@chakra-ui/react'
-import ProfilePanel from 'components/Dashboard/ProfilePanel'
+import { MemberProfile } from 'components/Dashboard/MemberProfile'
 import DashboardLayout from 'components/Layouts/DashboardLayout'
 import PageTitle from 'components/PageTitle'
 import { GetStaticPropsContext } from 'next'
@@ -27,7 +27,7 @@ const DashboardPage: NextPageWithLayout = () => {
       flexDir={'column'}
     >
       <PageTitle title={'Dashboard'} />
-      <ProfilePanel />
+      <MemberProfile />
     </Container>
   )
 }
