@@ -1,37 +1,44 @@
-import { useProfilesQuery } from 'hooks/useProfilesQuery'
-import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
-import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Th,
-  Td,
-  TableCaption,
-  IconButton,
-  TableContainer,
   HStack,
+  IconButton,
+  Table,
+  TableCaption,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
 } from '@chakra-ui/react'
-import { MdEdit } from 'react-icons/md'
-import { DeleteMemberProfileModal } from './DeleteMemberProfileModal'
-import { useDeleteProfileMutation } from 'hooks/useDeleteProfileMutation'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
+import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
 import { useRouter } from 'next/router'
+import { MdEdit } from 'react-icons/md'
+import { deleteMember, getAllMembers } from 'utils/api-helpers'
+import { DeleteMemberProfileModal } from './DeleteMemberProfileModal'
 
 export function MembersTable() {
   const router = useRouter()
+
   const {
-    data: profiles,
+    data: members,
     error,
     isLoading,
-    refetch,
     isRefetching,
-  } = useProfilesQuery()
+    refetch,
+  } = useQuery({
+    queryKey: [getAllMembers.name],
+    queryFn: () => getAllMembers(),
+  })
 
-  const deleteProfileMutation = useDeleteProfileMutation()
+  const { mutate } = useMutation({
+    mutationFn: deleteMember,
+    mutationKey: [deleteMember.name],
+  })
 
   const handleDeleteProfile = (profileId: string) => {
-    deleteProfileMutation.mutate(profileId, {
+    mutate(profileId, {
       onSuccess: () => {
         refetch()
       },
@@ -55,23 +62,23 @@ export function MembersTable() {
           </Tr>
         </Thead>
         <Tbody>
-          {profiles?.map((profile) => (
-            <Tr key={profile.clerkId}>
-              <Td>{profile.clerkId}</Td>
-              <Td>{`${profile.first_name} ${profile.last_name}`}</Td>
-              <Td>{profile.email_address}</Td>
-              <Td>{profile.status}</Td>
+          {members?.map((member) => (
+            <Tr key={member.clerkId}>
+              <Td>{member.clerkId}</Td>
+              <Td>{`${member.first_name} ${member.last_name}`}</Td>
+              <Td>{member.email_address}</Td>
+              <Td>{member.status}</Td>
               <Td>
                 <HStack justifyContent="center">
                   <IconButton
                     aria-label="Edit profile"
                     icon={<MdEdit size={24} />}
                     onClick={() =>
-                      router.push(`/dashboard/members/${profile.clerkId}`)
+                      router.push(`/dashboard/members/${member.clerkId}`)
                     }
                   />
                   <DeleteMemberProfileModal
-                    onConfirm={() => handleDeleteProfile(profile.clerkId)}
+                    onConfirm={() => handleDeleteProfile(member.clerkId)}
                   />
                 </HStack>
               </Td>

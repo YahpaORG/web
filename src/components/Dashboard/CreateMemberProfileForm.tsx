@@ -17,8 +17,6 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { useUser } from '@clerk/nextjs'
-import useCreateProfileMutation from 'hooks/useCreateProfileMutation'
-import { useUserProfileQuery } from 'hooks/useUserProfileQuery'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { BiErrorCircle } from 'react-icons/bi'
@@ -27,14 +25,20 @@ import { MdOutlineEmail, MdLocalPhone } from 'react-icons/md'
 import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
 import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
 import { CreateMemberInput } from 'types/create-form'
+import { createMember, getOneMember } from 'utils/api-helpers'
+import { useMutation, useQuery } from '@tanstack/react-query'
 
 export function CreateMemberProfileForm() {
   const { user, isLoaded } = useUser()
   const {
-    data: profileExists,
-    isLoading,
+    data: member,
     error,
-  } = useUserProfileQuery(user?.id)
+    isLoading,
+  } = useQuery({
+    enabled: !!user?.id,
+    queryKey: [getOneMember.name, user?.id],
+    queryFn: () => getOneMember(user?.id),
+  })
 
   const {
     handleSubmit,
@@ -45,7 +49,10 @@ export function CreateMemberProfileForm() {
   const toast = useToast()
   const router = useRouter()
 
-  const createProfileMutation = useCreateProfileMutation()
+  const createProfileMutation = useMutation({
+    mutationFn: createMember,
+    mutationKey: [createMember.name],
+  })
 
   const onFormSubmit = async (formData: CreateMemberInput) => {
     try {
@@ -93,7 +100,7 @@ export function CreateMemberProfileForm() {
 
   if (error) return <ErrorMessage />
   if (isLoading || !isLoaded) return <LoadingSpinner />
-  if (profileExists) {
+  if (member) {
     router.push('/dashboard')
   }
 

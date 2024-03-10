@@ -1,16 +1,17 @@
-import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
+import { Box, Text } from '@chakra-ui/react'
+import { useQuery } from '@tanstack/react-query'
 import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
+import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
 import DashboardLayout from 'components/Layouts/DashboardLayout'
 import Page from 'components/Page'
 import PageTitle from 'components/PageTitle'
 import Section from 'components/Section'
 import { useRole } from 'hooks/useRole'
-import { useUserProfileQuery } from 'hooks/useUserProfileQuery'
 import { GetServerSidePropsContext } from 'next'
 import { useRouter } from 'next/router'
 import { NextPageWithLayout } from 'pages/_app'
 import { ReactElement } from 'react'
-import { Text, Box } from '@chakra-ui/react'
+import { getOneMember } from 'utils/api-helpers'
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
@@ -25,7 +26,15 @@ const MemberPage: NextPageWithLayout = () => {
   const router = useRouter()
   const userId = router.query?.id as string | undefined
   const { isAdmin } = useRole()
-  const { data: profile, isLoading, error } = useUserProfileQuery(userId)
+  const {
+    data: member,
+    error,
+    isLoading,
+  } = useQuery({
+    enabled: !!userId,
+    queryKey: [getOneMember.name, userId],
+    queryFn: () => getOneMember(userId),
+  })
 
   if (!isAdmin) router.push('/dashboard')
   if (error) return <ErrorMessage />
@@ -36,9 +45,9 @@ const MemberPage: NextPageWithLayout = () => {
       <PageTitle title={'Profile'} />
       <Section>
         <Text>
-          Hello, {profile?.first_name} {profile?.last_name}
+          Hello, {member?.first_name} {member?.last_name}
         </Text>
-        <Box as="pre">{JSON.stringify(profile, null, 2)}</Box>
+        <Box as="pre">{JSON.stringify(member, null, 2)}</Box>
       </Section>
     </Page>
   )
