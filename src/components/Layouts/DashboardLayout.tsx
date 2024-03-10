@@ -13,6 +13,7 @@ export default function DashboardLayout({
         flexDirection="column"
         flex={1}
         minH="100vh"
+        marginLeft="320px"
       >
         {children}
       </Box>

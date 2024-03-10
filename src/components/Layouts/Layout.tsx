@@ -1,8 +1,8 @@
 import { Box, Flex, useBreakpoint } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import isDev from 'utils/isDev'
-import Footer from './Footer'
-import Header from './Header'
+import Footer from '../Footer'
+import Header from '../Header'
 import { useState, useEffect } from 'react'
 
 export default function Layout({

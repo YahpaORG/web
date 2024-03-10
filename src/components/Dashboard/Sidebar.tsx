@@ -46,9 +46,13 @@ export default function Sidebar() {
 
   return (
     <Stack
-      id="sidebar"
+      position="fixed"
+      left={0}
+      top={0}
       width="320px"
+      height="100vh"
       p={4}
+      background="white"
       borderRight="1px solid"
       borderColor="gray.300"
     >
