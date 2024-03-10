@@ -29,7 +29,7 @@ const MembersPage: NextPageWithLayout = () => {
 }
 
 MembersPage.getLayout = function getLayout(page: ReactElement) {
-  return <DashboardLayout>{page}</DashboardLayout>
+  return <DashboardLayout isProtected>{page}</DashboardLayout>
 }
 
 export default MembersPage

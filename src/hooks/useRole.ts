@@ -1,9 +1,9 @@
 import { useUser } from '@clerk/nextjs'
 
 export function useRole() {
-  const { user } = useUser()
+  const { user, isLoaded } = useUser()
 
   const isAdmin = user?.publicMetadata.role === 'admin'
 
-  return { isAdmin }
+  return { isAdmin, isLoaded }
 }

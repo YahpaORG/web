@@ -1,9 +1,15 @@
 import { Box } from '@chakra-ui/react'
+import { Protected } from 'components/Dashboard/Protected'
 import Sidebar from 'components/Dashboard/Sidebar'
+
+type DashboardLayoutProps = React.PropsWithChildren<{
+  isProtected?: boolean
+}>
 
 export default function DashboardLayout({
   children,
-}: React.PropsWithChildren<unknown>) {
+  isProtected = false,
+}: DashboardLayoutProps) {
   return (
     <Box display="flex">
       <Sidebar />
@@ -15,7 +21,7 @@ export default function DashboardLayout({
         minH="100vh"
         marginLeft="320px"
       >
-        {children}
+        {isProtected ? <Protected>{children}</Protected> : children}
       </Box>
     </Box>
   )

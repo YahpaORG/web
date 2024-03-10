@@ -6,7 +6,6 @@ import DashboardLayout from 'components/Layouts/DashboardLayout'
 import Page from 'components/Page'
 import PageTitle from 'components/PageTitle'
 import Section from 'components/Section'
-import { useRole } from 'hooks/useRole'
 import { GetServerSidePropsContext } from 'next'
 import { useRouter } from 'next/router'
 import { NextPageWithLayout } from 'pages/_app'
@@ -25,7 +24,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 const MemberPage: NextPageWithLayout = () => {
   const router = useRouter()
   const userId = router.query?.id as string | undefined
-  const { isAdmin } = useRole()
   const {
     data: member,
     error,
@@ -36,9 +34,8 @@ const MemberPage: NextPageWithLayout = () => {
     queryFn: () => getOneMember(userId),
   })
 
-  if (!isAdmin) router.push('/dashboard')
   if (error) return <ErrorMessage />
-  if (isLoading || !isAdmin) return <LoadingSpinner />
+  if (isLoading) return <LoadingSpinner />
 
   return (
     <Page p={0} maxW="full" h="full" display="flex" flex={1} flexDir={'column'}>
@@ -54,7 +51,7 @@ const MemberPage: NextPageWithLayout = () => {
 }
 
 MemberPage.getLayout = function getLayout(page: ReactElement) {
-  return <DashboardLayout>{page}</DashboardLayout>
+  return <DashboardLayout isProtected>{page}</DashboardLayout>
 }
 
 export default MemberPage
