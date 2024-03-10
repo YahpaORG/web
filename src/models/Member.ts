@@ -1,6 +1,6 @@
 import mongoose, { Model } from 'mongoose'
 
-export interface Profile extends mongoose.Document {
+export interface Member {
   clerkId: string
   first_name: string
   last_name: string
@@ -12,9 +12,13 @@ export interface Profile extends mongoose.Document {
   languages: string[]
   about_me: string
   status: 'pending' | 'active' | 'rejected'
+  created_at: Date
+  updated_at?: Date
 }
 
-const ProfileSchema = new mongoose.Schema<Profile>({
+interface MemberDocument extends Member, mongoose.Document {}
+
+const MemberSchema = new mongoose.Schema<MemberDocument>({
   clerkId: {
     type: String,
     required: true,
@@ -62,7 +66,16 @@ const ProfileSchema = new mongoose.Schema<Profile>({
     type: String,
     default: 'pending',
   },
+  created_at: {
+    type: Date,
+    default: new Date(),
+  },
+  updated_at: {
+    type: Date,
+    default: undefined,
+  },
 })
 
-export const ProfileModel: Model<Profile> =
-  mongoose.models.Profiles || mongoose.model<Profile>('Profiles', ProfileSchema)
+export const MemberModel: Model<MemberDocument> =
+  mongoose.models.Members ||
+  mongoose.model<MemberDocument>('Members', MemberSchema)

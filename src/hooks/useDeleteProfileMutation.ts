@@ -6,7 +6,7 @@ import {
 import { fetchProfilesQueryKey } from './useProfilesQuery'
 
 const deleteProfile = async (profileId: string) => {
-  const response = await fetch(`/api/profiles/${profileId}`, {
+  const response = await fetch(`/api/members/${profileId}`, {
     method: 'DELETE',
   })
   return response.json()

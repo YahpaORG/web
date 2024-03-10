@@ -1,5 +1,5 @@
 import { getAuth } from '@clerk/nextjs/server'
-import { ProfileModel } from 'models/Profile'
+import { MemberModel } from 'models/Member'
 import { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from 'utils/dbConnect'
 
@@ -16,7 +16,7 @@ export default async function profilesHandler(
     switch (req.method) {
       case 'GET': {
         try {
-          const profiles = await ProfileModel.find({})
+          const profiles = await MemberModel.find({})
           res.status(200).json(profiles)
         } catch (error) {
           res.status(400).json({ success: false, error })
@@ -27,7 +27,7 @@ export default async function profilesHandler(
       case 'POST': {
         try {
           const body = req.body
-          const profile = await ProfileModel.create({
+          const profile = await MemberModel.create({
             clerkId: userId,
             ...body,
           })

@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { Profile } from 'models/Profile'
+import { Member } from 'models/Member'
 
 export const fetchProfileQueryKey = 'fetchMyProfile'
 
-async function fetchProfile(clerkId?: string): Promise<Profile> {
-  const response = await fetch(`/api/profiles/${clerkId}`)
+async function fetchProfile(clerkId?: string): Promise<Member> {
+  const response = await fetch(`/api/members/${clerkId}`)
   return response.json()
 }
 

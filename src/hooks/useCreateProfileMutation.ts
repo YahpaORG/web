@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query'
 import { fetchProfileQueryKey } from './useUserProfileQuery'
 
-export type CreateProfileFormData = {
+export type CreateMemberFormData = {
   first_name: string
   last_name: string
   occupation: string
@@ -17,8 +17,8 @@ export type CreateProfileFormData = {
   about_me: string
 }
 
-const createProfile = async (formData: CreateProfileFormData) => {
-  const response = await fetch('/api/profiles', {
+const createProfile = async (formData: CreateMemberFormData) => {
+  const response = await fetch('/api/members', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -30,9 +30,9 @@ const createProfile = async (formData: CreateProfileFormData) => {
 
 export default function useCreateProfileMutation(
   options?: UseMutationOptions<
-    CreateProfileFormData,
+    CreateMemberFormData,
     Error,
-    CreateProfileFormData
+    CreateMemberFormData
   >
 ) {
   const queryClient = useQueryClient()

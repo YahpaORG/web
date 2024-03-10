@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import { faker } from '@faker-js/faker'
-import { ProfileModel } from '../models/Profile'
+import { MemberModel } from '../models/Member'
 
 dotenv.config({ path: '.env.local' })
 
@@ -43,7 +43,7 @@ async function createMockUsers(count: number) {
     mockProfiles.push(profile)
   }
 
-  await ProfileModel.insertMany(mockProfiles)
+  await MemberModel.insertMany(mockProfiles)
   console.log(`Successfully created ${mockProfiles.length} mock profiles`)
 }
 
