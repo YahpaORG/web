@@ -39,7 +39,8 @@ export default function useCreateProfileMutation(
   return useMutation({
     ...options,
     mutationFn: createProfile,
+    mutationKey: ['createProfile'],
     onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: fetchProfileQueryKey }),
+      queryClient.invalidateQueries({ queryKey: [fetchProfileQueryKey] }),
   })
 }

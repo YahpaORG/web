@@ -1,4 +1,4 @@
-import ProfilesList from 'components/Dashboard/ProfilesList'
+import { ProfilesTable } from 'components/Dashboard/ProfilesTable'
 import DashboardLayout from 'components/Layouts/DashboardLayout'
 import Page from 'components/Page'
 import PageTitle from 'components/PageTitle'
@@ -22,7 +22,7 @@ const MembersPage: NextPageWithLayout = () => {
     <Page p={0} maxW="full" h="full" display="flex" flex={1} flexDir={'column'}>
       <PageTitle title={'Members Registry'} />
       <Section>
-        <ProfilesList />
+        <ProfilesTable />
       </Section>
     </Page>
   )

@@ -6,9 +6,8 @@ import { authMiddleware } from '@clerk/nextjs'
 export default authMiddleware({
   publicRoutes: [
     '/',
-    // TODO: Add back once dashboard feature is ready
-    // '/sign-in',
-    // '/sign-up',
+    '/sign-in',
+    '/sign-up',
     '/about',
     '/contact',
     '/projects',
