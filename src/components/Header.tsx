@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Collapse,
   Flex,
   Heading,
@@ -13,11 +14,12 @@ import {
 import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
-import { FiChevronLeft, FiMenu, FiX } from 'react-icons/fi'
+import { FiChevronLeft, FiMenu, FiUser, FiX } from 'react-icons/fi'
 import Image from './Image'
 import LanguagePicker from './LanguagePicker'
 import Link from './Link'
 import SocialMedia from './SocialMedia'
+import { SignedIn, UserButton, SignedOut } from '@clerk/nextjs'
 
 function NavLink({
   children,
@@ -193,8 +195,10 @@ export default function Header() {
               <SocialMedia.WeChat />
             </SocialMedia>
             <LanguagePicker />
-            {/* TODO: Add back once dashboard feature is ready */}
-            {/* <SignedIn>
+            <SignedIn>
+              <Button as={Link} href="/dashboard">
+                Dashboard
+              </Button>
               <UserButton />
             </SignedIn>
             <SignedOut>
@@ -208,7 +212,7 @@ export default function Header() {
               >
                 <Text>{t('sign_in')}</Text>
               </Button>
-            </SignedOut> */}
+            </SignedOut>
 
             <IconButton
               display={{ base: 'inline-flex', xl: 'none' }}
@@ -228,8 +232,7 @@ export default function Header() {
             <MenuLink href="/projects">{t('projects')}</MenuLink>
             <MenuLink href="/contact">{t('contact')}</MenuLink>
           </Stack>
-          {/* TODO: Add back once dashboard feature is ready */}
-          {/* <SignedOut>
+          <SignedOut>
             <Button
               as={Link}
               href="/sign-in"
@@ -239,7 +242,7 @@ export default function Header() {
             >
               <Text>{t('sign_in')}</Text>
             </Button>
-          </SignedOut> */}
+          </SignedOut>
           <Stack
             direction="row"
             alignItems="center"

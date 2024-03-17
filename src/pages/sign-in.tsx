@@ -36,7 +36,7 @@ export default function SignInPage() {
             path={'/sign-in'}
             routing="hash"
             signUpUrl="/sign-up"
-            afterSignInUrl="/"
+            afterSignInUrl="/dashboard"
           />
         </Stack>
       </Section>

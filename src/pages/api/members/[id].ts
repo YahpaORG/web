@@ -1,5 +1,5 @@
 import { getAuth } from '@clerk/nextjs/server'
-import { ProfileModel } from 'models/Profile'
+import { MemberModel } from 'models/Member'
 import { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from 'utils/dbConnect'
 
@@ -19,13 +19,9 @@ export default async function profilesHandler(
     switch (req.method) {
       case 'GET': {
         try {
-          const profile = await ProfileModel.findById(req.query.id)
+          const profile = await MemberModel.findOne({ clerkId: req.query.id })
 
-          if (!profile) {
-            return res.status(400).json({ success: false })
-          }
-
-          res.status(200).json({ success: true, data: profile })
+          res.status(200).json(profile)
         } catch (error) {
           res.status(400).json({ success: false, error })
         }
@@ -34,8 +30,8 @@ export default async function profilesHandler(
 
       case 'PUT': {
         try {
-          const profile = await ProfileModel.findByIdAndUpdate(
-            req.query.id,
+          const profile = await MemberModel.findOneAndUpdate(
+            { clerkId: req.query.id },
             req.body,
             {
               new: true,
@@ -56,8 +52,8 @@ export default async function profilesHandler(
 
       case 'DELETE': {
         try {
-          const deletedProfile = await ProfileModel.deleteOne({
-            _id: req.query.id,
+          const deletedProfile = await MemberModel.deleteOne({
+            clerkId: req.query.id,
           })
 
           if (!deletedProfile) {
