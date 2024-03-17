@@ -1,51 +1,19 @@
-import {
-  Avatar,
-  Button,
-  Divider,
-  HStack,
-  Heading,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
-import { useClerk, useUser } from '@clerk/nextjs'
+import { Button, Divider, HStack, Heading, Stack } from '@chakra-ui/react'
+import { useClerk } from '@clerk/nextjs'
 import Image from 'components/Image'
-import { useRole } from 'hooks/useRole'
 import { useTranslations } from 'next-intl'
-import Link, { LinkProps } from 'next/link'
-import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { MdOutlineExitToApp } from 'react-icons/md'
-
-function DashboardLink({
-  children,
-  ...props
-}: React.PropsWithChildren<LinkProps>) {
-  const router = useRouter()
-  const isActiveLink = router.asPath === props.href
-
-  return (
-    <Link {...props}>
-      <Text
-        p={2}
-        fontWeight={600}
-        borderRadius="lg"
-        textAlign="center"
-        background={isActiveLink ? 'gray.100' : undefined}
-        _hover={{ background: 'gray.200' }}
-      >
-        {children}
-      </Text>
-    </Link>
-  )
-}
+import { DashboardLinks } from './DashboardLinks'
+import { ProfileAvatar } from './ProfileAvatar'
 
 export default function Sidebar() {
   const t = useTranslations('App')
-  const { user } = useUser()
   const { signOut } = useClerk()
-  const { isAdmin } = useRole()
 
   return (
     <Stack
+      display={{ base: 'none', md: 'flex' }}
       position="fixed"
       left={0}
       top={0}
@@ -56,26 +24,10 @@ export default function Sidebar() {
       borderRight="1px solid"
       borderColor="gray.300"
     >
-      <Stack alignItems="center">
-        <Avatar size="xl" name="My User" src={user?.imageUrl} />
-        <Text>{user?.emailAddresses[0].emailAddress}</Text>
-        <Text textTransform="capitalize">
-          <Text as="span" fontWeight={600}>
-            Role:
-          </Text>{' '}
-          {user?.publicMetadata.role as string}
-        </Text>
-      </Stack>
+      <ProfileAvatar />
       <Divider my={4} />
       <Stack height="full" justifyContent="space-between">
-        <Stack as="nav">
-          <Stack flexDirection="column" gap={2}>
-            <DashboardLink href="/dashboard">My Profile</DashboardLink>
-            {isAdmin && (
-              <DashboardLink href="/dashboard/members">Members</DashboardLink>
-            )}
-          </Stack>
-        </Stack>
+        <DashboardLinks />
         <Stack>
           <HStack justifyContent="center">
             <Button
