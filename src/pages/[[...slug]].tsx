@@ -3,8 +3,6 @@ import Hero from 'components/Home/Hero'
 import News from 'components/Home/News'
 import Registry from 'components/Home/Registry'
 import Resources from 'components/Home/Resources'
-import Sponsors from 'components/Home/Sponsors'
-import TeamMembers from 'components/Home/TeamMembers'
 import Page from 'components/Page'
 import SEO from 'components/SEO'
 import {
@@ -62,8 +60,6 @@ export default function HomePage(
         {/* TODO: eventually replace news content with Facebook/Instagram */}
         <News events={story.content.event_latest?.[0].events} />
         <Resources />
-        <Sponsors />
-        <TeamMembers />
       </Page>
     </>
   )
