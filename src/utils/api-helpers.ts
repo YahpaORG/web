@@ -30,8 +30,23 @@ export async function getOneMember(clerkId?: string) {
   return response
 }
 
-export async function getAllMembers(): Promise<Member[]> {
-  const response = await fetch('/api/members')
+type GetAllMembersResponse = {
+  members: Member[]
+  totalCount: number
+  totalPages: number
+  skip: number
+}
+
+type GetAllMembersOptions = {
+  limit?: number
+  page?: number
+}
+
+export async function getAllMembers({
+  limit,
+  page,
+}: GetAllMembersOptions): Promise<GetAllMembersResponse> {
+  const response = await fetch(`/api/members?page=${page}&limit=${limit}`)
   return await response.json()
 }
 

@@ -16,8 +16,22 @@ export default async function profilesHandler(
     switch (req.method) {
       case 'GET': {
         try {
-          const profiles = await MemberModel.find({})
-          res.status(200).json(profiles)
+          const { page = 1, limit = 10 } = req.query
+          const skip =
+            (parseInt(page as string, 10) - 1) * parseInt(limit as string, 10)
+
+          const members = await MemberModel.find()
+            .skip(skip)
+            .limit(parseInt(limit as string, 10))
+
+          const totalCount = await MemberModel.countDocuments()
+          const totalPages = Math.ceil(
+            totalCount / parseInt(limit as string, 10)
+          )
+
+          console.log('total profiles')
+
+          res.status(200).json({ members, totalCount, totalPages, skip })
         } catch (error) {
           res.status(400).json({ success: false, error })
         }

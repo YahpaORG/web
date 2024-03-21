@@ -11,7 +11,7 @@ const connectDB = async () => {
   try {
     await mongoose.connect(MONGO_URI as string)
     console.log('Connected to DB')
-    await createMockMembers(10)
+    await createMockMembers(50)
   } catch (error) {
     console.error(error)
   } finally {
