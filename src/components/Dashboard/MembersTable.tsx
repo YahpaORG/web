@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   ButtonGroup,
   HStack,
@@ -7,8 +8,8 @@ import {
   Skeleton,
   Stack,
   Table,
-  TableCaption,
   TableContainer,
+  TableRowProps,
   Tbody,
   Td,
   Text,
@@ -18,12 +19,52 @@ import {
 } from '@chakra-ui/react'
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
 import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
+import { Member } from 'models/Member'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { MdChevronLeft, MdChevronRight, MdEdit } from 'react-icons/md'
 import { deleteMember, getAllMembers } from 'utils/api-helpers'
 import { DeleteMemberProfileModal } from './DeleteMemberProfileModal'
 import { LoadingSpinner } from './LoadingSpinner'
+
+function SkeletonRow(props: TableRowProps) {
+  return (
+    <Tr {...props}>
+      <Td>
+        <Skeleton height={4} />
+      </Td>
+      <Td>
+        <Skeleton height={4} />
+      </Td>
+      <Td>
+        <Skeleton height={4} />
+      </Td>
+      <Td>
+        <Skeleton height={4} />
+      </Td>
+      <Td>
+        <Skeleton height={4} />
+      </Td>
+    </Tr>
+  )
+}
+
+function StatusBadge({ status }: { status: Member['status'] }) {
+  const getColorScheme = () => {
+    switch (status) {
+      case 'active':
+        return 'green'
+      case 'pending':
+        return 'yellow'
+      case 'rejected':
+        return 'red'
+      default:
+        return ''
+    }
+  }
+
+  return <Badge colorScheme={getColorScheme()}>{status}</Badge>
+}
 
 export function MembersTable() {
   const router = useRouter()
@@ -63,8 +104,13 @@ export function MembersTable() {
   if (error) return <ErrorMessage />
   if (isLoading) return <LoadingSpinner />
 
+  const LoadingSkeleton = () =>
+    pagesArray(limit).map((i) => <SkeletonRow key={i} />)
+
+  const LIMIT_OPTIONS = [10, 25, 50]
+
   return (
-    <Stack>
+    <Stack gap={4}>
       <HStack justifyContent="flex-end">
         <Text>Per Page</Text>
         <Select
@@ -72,72 +118,53 @@ export function MembersTable() {
           defaultValue={limit}
           onChange={(event) => setLimit(parseInt(event.currentTarget.value))}
         >
-          <Box as="option" value={10}>
-            10
-          </Box>
-          <Box as="option" value={25}>
-            25
-          </Box>
-          <Box as="option" value={50}>
-            50
-          </Box>
+          {LIMIT_OPTIONS.map((option) => (
+            <Box key={`limit-${option}`} as="option" value={option}>
+              {option}
+            </Box>
+          ))}
         </Select>
       </HStack>
       <TableContainer>
         <Table variant="simple" size="lg">
-          <TableCaption>A table of all member profiles</TableCaption>
           <Thead>
             <Tr>
-              <Th>ID</Th>
-              <Th>Name</Th>
+              <Th>
+                <HStack>Name</HStack>
+              </Th>
               <Th>Email Address</Th>
               <Th>Status</Th>
               <Th textAlign="center">Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {isFetching || isRefetching
-              ? pagesArray(limit).map((i) => (
-                  <Tr key={i}>
-                    <Td>
-                      <Skeleton height={4} />
-                    </Td>
-                    <Td>
-                      <Skeleton height={4} />
-                    </Td>
-                    <Td>
-                      <Skeleton height={4} />
-                    </Td>
-                    <Td>
-                      <Skeleton height={4} />
-                    </Td>
-                    <Td>
-                      <Skeleton height={4} />
-                    </Td>
-                  </Tr>
-                ))
-              : data?.members?.map((member) => (
-                  <Tr key={member.clerkId}>
-                    <Td>{member.clerkId}</Td>
-                    <Td>{`${member.first_name} ${member.last_name}`}</Td>
-                    <Td>{member.email_address}</Td>
-                    <Td>{member.status}</Td>
-                    <Td>
-                      <HStack justifyContent="center">
-                        <IconButton
-                          aria-label="Edit profile"
-                          icon={<MdEdit size={24} />}
-                          onClick={() =>
-                            router.push(`/dashboard/members/${member.clerkId}`)
-                          }
-                        />
-                        <DeleteMemberProfileModal
-                          onConfirm={() => handleDeleteProfile(member.clerkId)}
-                        />
-                      </HStack>
-                    </Td>
-                  </Tr>
-                ))}
+            {isFetching || isRefetching ? (
+              <LoadingSkeleton />
+            ) : (
+              data?.members?.map((member) => (
+                <Tr key={member.clerkId}>
+                  <Td>{`${member.first_name} ${member.last_name}`}</Td>
+                  <Td>{member.email_address}</Td>
+                  <Td>
+                    <StatusBadge status={member.status} />
+                  </Td>
+                  <Td>
+                    <HStack justifyContent="center">
+                      <IconButton
+                        aria-label="Edit profile"
+                        icon={<MdEdit size={24} />}
+                        onClick={() =>
+                          router.push(`/dashboard/members/${member.clerkId}`)
+                        }
+                      />
+                      <DeleteMemberProfileModal
+                        onConfirm={() => handleDeleteProfile(member.clerkId)}
+                      />
+                    </HStack>
+                  </Td>
+                </Tr>
+              ))
+            )}
           </Tbody>
         </Table>
       </TableContainer>
