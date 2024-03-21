@@ -34,7 +34,6 @@ type GetAllMembersResponse = {
   members: Member[]
   totalCount: number
   totalPages: number
-  skip: number
 }
 
 type GetAllMembersOptions = {

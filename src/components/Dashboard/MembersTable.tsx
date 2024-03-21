@@ -1,10 +1,10 @@
 import {
   Box,
-  Button,
   ButtonGroup,
   HStack,
   IconButton,
   Select,
+  Skeleton,
   Stack,
   Table,
   TableCaption,
@@ -16,24 +16,32 @@ import {
   Thead,
   Tr,
 } from '@chakra-ui/react'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { LoadingSpinner } from 'components/Dashboard//LoadingSpinner'
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
 import { ErrorMessage } from 'components/Dashboard/ErrorMessage'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { MdEdit } from 'react-icons/md'
+import { useState } from 'react'
+import { MdChevronLeft, MdChevronRight, MdEdit } from 'react-icons/md'
 import { deleteMember, getAllMembers } from 'utils/api-helpers'
 import { DeleteMemberProfileModal } from './DeleteMemberProfileModal'
+import { LoadingSpinner } from './LoadingSpinner'
 
 export function MembersTable() {
   const router = useRouter()
   const [page, setPage] = useState<number>(1)
   const [limit, setLimit] = useState<number>(10)
-  const [skip, setSkip] = useState<number>(0)
-  const { data, error, isLoading, isRefetching, refetch } = useQuery({
-    queryKey: [getAllMembers.name, limit, page],
-    queryFn: () => getAllMembers({ limit, page }),
-  })
+  const skip = (page - 1) * limit
+
+  const { data, error, isLoading, isRefetching, refetch, isFetching } =
+    useQuery({
+      queryKey: [getAllMembers.name, limit, page],
+      queryFn: () =>
+        getAllMembers({
+          limit,
+          page,
+        }),
+      placeholderData: keepPreviousData,
+      staleTime: 5000,
+    })
 
   const { mutate } = useMutation({
     mutationFn: deleteMember,
@@ -52,15 +60,8 @@ export function MembersTable() {
     return Array.from({ length: totalPages ?? 1 }, (_, index) => index + 1)
   }
 
-  useEffect(() => {
-    if (data) {
-      console.log(data)
-      setSkip(data?.skip)
-    }
-  }, [data])
-
   if (error) return <ErrorMessage />
-  if (isLoading || isRefetching) return <LoadingSpinner />
+  if (isLoading) return <LoadingSpinner />
 
   return (
     <Stack>
@@ -71,9 +72,15 @@ export function MembersTable() {
           defaultValue={limit}
           onChange={(event) => setLimit(parseInt(event.currentTarget.value))}
         >
-          <Box as="option">10</Box>
-          <Box as="option">25</Box>
-          <Box as="option">50</Box>
+          <Box as="option" value={10}>
+            10
+          </Box>
+          <Box as="option" value={25}>
+            25
+          </Box>
+          <Box as="option" value={50}>
+            50
+          </Box>
         </Select>
       </HStack>
       <TableContainer>
@@ -89,28 +96,48 @@ export function MembersTable() {
             </Tr>
           </Thead>
           <Tbody>
-            {data?.members?.map((member) => (
-              <Tr key={member.clerkId}>
-                <Td>{member.clerkId}</Td>
-                <Td>{`${member.first_name} ${member.last_name}`}</Td>
-                <Td>{member.email_address}</Td>
-                <Td>{member.status}</Td>
-                <Td>
-                  <HStack justifyContent="center">
-                    <IconButton
-                      aria-label="Edit profile"
-                      icon={<MdEdit size={24} />}
-                      onClick={() =>
-                        router.push(`/dashboard/members/${member.clerkId}`)
-                      }
-                    />
-                    <DeleteMemberProfileModal
-                      onConfirm={() => handleDeleteProfile(member.clerkId)}
-                    />
-                  </HStack>
-                </Td>
-              </Tr>
-            ))}
+            {isFetching || isRefetching
+              ? pagesArray(limit).map((i) => (
+                  <Tr key={i}>
+                    <Td>
+                      <Skeleton height={4} />
+                    </Td>
+                    <Td>
+                      <Skeleton height={4} />
+                    </Td>
+                    <Td>
+                      <Skeleton height={4} />
+                    </Td>
+                    <Td>
+                      <Skeleton height={4} />
+                    </Td>
+                    <Td>
+                      <Skeleton height={4} />
+                    </Td>
+                  </Tr>
+                ))
+              : data?.members?.map((member) => (
+                  <Tr key={member.clerkId}>
+                    <Td>{member.clerkId}</Td>
+                    <Td>{`${member.first_name} ${member.last_name}`}</Td>
+                    <Td>{member.email_address}</Td>
+                    <Td>{member.status}</Td>
+                    <Td>
+                      <HStack justifyContent="center">
+                        <IconButton
+                          aria-label="Edit profile"
+                          icon={<MdEdit size={24} />}
+                          onClick={() =>
+                            router.push(`/dashboard/members/${member.clerkId}`)
+                          }
+                        />
+                        <DeleteMemberProfileModal
+                          onConfirm={() => handleDeleteProfile(member.clerkId)}
+                        />
+                      </HStack>
+                    </Td>
+                  </Tr>
+                ))}
           </Tbody>
         </Table>
       </TableContainer>
@@ -121,30 +148,34 @@ export function MembersTable() {
         gap={4}
       >
         <ButtonGroup>
-          <Button isDisabled={page === 1} onClick={() => setPage((p) => p - 1)}>
-            Previous
-          </Button>
+          <IconButton
+            aria-label="Previous page"
+            isDisabled={page === 1}
+            onClick={() => setPage((p) => p - 1)}
+            icon={<MdChevronLeft size={28} />}
+          />
           <Select
-            defaultValue={page}
+            value={page}
             w="auto"
             onChange={(event) => setPage(parseInt(event.currentTarget.value))}
           >
             {pagesArray(data?.totalPages).map((page) => (
-              <Box key={page} as="option">
+              <Box key={page} as="option" value={page}>
                 {page}
               </Box>
             ))}
           </Select>
-          <Button
+          <IconButton
+            aria-label="Next page"
             isDisabled={page === data?.totalPages}
             onClick={() => setPage((p) => p + 1)}
-          >
-            Next
-          </Button>
+            icon={<MdChevronRight size={28} />}
+          />
         </ButtonGroup>
+
         <Text>
           Showing {Math.min(skip + limit, data?.totalCount ?? 0)} -{' '}
-          {data?.totalCount}
+          {data?.totalCount ?? 0}
         </Text>
       </Stack>
     </Stack>
