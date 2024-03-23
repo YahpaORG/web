@@ -129,9 +129,7 @@ export function MembersTable() {
         <Table variant="simple" size="lg">
           <Thead>
             <Tr>
-              <Th>
-                <HStack>Name</HStack>
-              </Th>
+              <Th>Name</Th>
               <Th>Email Address</Th>
               <Th>Status</Th>
               <Th textAlign="center">Actions</Th>
