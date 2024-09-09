@@ -12,15 +12,21 @@ export default function Resources() {
       imageUrl: '/images/gloves.jpg',
     },
     {
-      label: t('Home.resources_option3'),
-      link: '/contact',
-      imageUrl: '/images/pills.jpg',
+      label: t('Home.resources_option5'),
+      link: 'https://acrobat.adobe.com/id/urn:aaid:sc:va6c2:f89c379a-26dd-4d65-a508-7c3039a47e25',
+      imageUrl: '/images/brain.jpg',
     },
     {
       label: t('Home.resources_option4'),
       link: '/registry',
       imageUrl: '/images/stethoscope.jpg',
     },
+    {
+      label: t('Home.resources_option3'),
+      link: '/contact',
+      imageUrl: '/images/pills.jpg',
+    },
+
   ]
 
   return (
