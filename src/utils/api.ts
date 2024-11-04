@@ -103,7 +103,7 @@ export async function getSearch(params?: StoriesParams): Promise<{
   const membersStories = await Storyblok.getStories({
     ...defaultParams,
     ...params,
-    per_page: 25,
+    per_page: 100,
     sort_by: 'content.name:asc',
   })
 
