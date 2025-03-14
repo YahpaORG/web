@@ -25,10 +25,10 @@
     "support": "Support",
     "updated_on": "Dernière mise à jour le",
     "yahpa": "AJPAS",
-    "yahpa_full": "Association des Jeunes Professionnels Asiatiques de la Santé"
+    "yahpa_full": "Association des jeunes professionnels ssiatiques de la santé"
   },
   "Home": {
-    "seo_title": "AJPAS - Association des Jeunes Professionnels Asiatique de la Santé",
+    "seo_title": "AJPAS - Association des jeunes professionnels asiatique de la santé",
     "seo_description": "AJPAS est un organisme à but non lucratif basé à Montréal, nos membres comprennent des professionnels et des étudiants de divers domaines de la santé.",
     "hero_title": "Bienvenue à la page officielle de notre association",
     "hero_description": "Nous sommes un groupe de jeunes professionnels et d’étudiants provenant de divers domaines de la santé qui a pour mission d'aider et de soutenir la communauté asiatique dans différents enjeux reliés à la santé.",
@@ -52,12 +52,12 @@
   },
   "About": {
     "seo_title": "YAHPA - À propos de nous",
-    "seo_description": "Découvrez ce qu'est l'AJPAS (Association des Jeunes Professionnels Asiatique de la Santé), nos objectifs et l'équipe derrière tout cela.",
+    "seo_description": "Découvrez ce qu'est l'AJPAS (Association des jeunes professionnels asiatique de la santé), nos objectifs et l'équipe derrière tout cela.",
     "page_title": "À propos de nous",
     "page_description": "Découvrez les objectifs et la motivation derrière YAHPA",
     "team_image_alt": "Nos membres YAHPA",
     "part1_header": "Qui sommes nous?",
-    "part1_text": "L'Association des Jeunes Professionnels Asiatiques de la Santé (AJPAS), aussi connue sous le nom de YAHPA (Young Asian Health Professionals Association), a vu jour dans les débuts de la pandémie de la COVID-19 en printemps 2020. À ce moment,  la désinformation et l’accès aux services et aux soins étaient des problématiques de grande ampleur, particulièrement pour les aînés et les immigrants unilingues asiatiques vivant au Québec. Un groupe de professionnels et d’étudiants en santé se sont rassemblés pour venir en aide à cette communauté en créant des guides d’informations sur le coronavirus, en développant des listes de ressources communautaires et en traduisant les annonces des mesures sanitaires, le tout dans les langues maternelles asiatiques. Leurs buts étaient d’optimiser la qualité et l’accès aux soins ainsi que de réduire les inégalités causées par les barrières linguistiques envers la communauté asiatique du Québec.",
+    "part1_text": "L'Association des jeunes professionnels asiatiques de la santé (AJPAS), aussi connue sous le nom de YAHPA (Young Asian Health Professionals Association), a vu jour dans les débuts de la pandémie de la COVID-19 en printemps 2020. À ce moment,  la désinformation et l’accès aux services et aux soins étaient des problématiques de grande ampleur, particulièrement pour les aînés et les immigrants unilingues asiatiques vivant au Québec. Un groupe de professionnels et d’étudiants en santé se sont rassemblés pour venir en aide à cette communauté en créant des guides d’informations sur le coronavirus, en développant des listes de ressources communautaires et en traduisant les annonces des mesures sanitaires, le tout dans les langues maternelles asiatiques. Leurs buts étaient d’optimiser la qualité et l’accès aux soins ainsi que de réduire les inégalités causées par les barrières linguistiques envers la communauté asiatique du Québec.",
     "part2_header": "Notre mission",
     "part2_text": "Notre mission est de réduire les écarts d'équité en matière de santé des communautés asiatiques en améliorant la promotion de la santé, la prévention des maladies et l'accès aux soins de santé par l'éducation, les services directs, la création d'une plate-forme interdisciplinaire de professionnels de la santé et le plaidoyer.",
     "goals_header": "Notre Vision et Nos Valeurs",
@@ -153,7 +153,7 @@
   },
   "Projects": {
     "seo_title": "AJPAS - Nos Projets",
-    "seo_description": "Apprenez-en davantage sur les projets en cours de AJPAS (Association des Jeunes Professionnels Asiatique de la Santé) pour soutenir la communauté asiatique et les professionnels de la santé à Montréal par le biais d'événements de sensibilisation, de ressources traduites, de conférences en ligne et bien plus encore.",
+    "seo_description": "Apprenez-en davantage sur les projets en cours de AJPAS (Association des jeunes professionnels asiatique de la santé) pour soutenir la communauté asiatique et les professionnels de la santé à Montréal par le biais d'événements de sensibilisation, de ressources traduites, de conférences en ligne et bien plus encore.",
     "page_title": "En savoir plus sur nos projets à venir",
     "page_slug": "Nos Projets",
     "page_description": "Pour soutenir notre communauté et les professionnels de la santé qui interagissent avec eux, nous travaillons sur des projets tels que l'organisation d'événements de sensibilisation, la traduction de ressources de santé, des vidéoconférences en ligne et bien plus encore.",
