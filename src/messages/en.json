@@ -25,10 +25,10 @@
     "support": "Support",
     "updated_on": "Updated on",
     "yahpa": "YAHPA",
-    "yahpa_full": "Young Asian Health Professional Association"
+    "yahpa_full": "Young Asian Health Professionals Association"
   },
   "Home": {
-    "seo_title": "YAHPA - Young Asian Health Professional Association",
+    "seo_title": "YAHPA - Young Asian Health Professionals Association",
     "seo_description": "YAHPA is a non-profit organization based in Montreal, our members include professionals and students from various health fields.",
     "hero_title": "Striving for a Healthier Community",
     "hero_description": "We are a group of young professionals and students from various health fields whose mission is to help and support the Asian community in various health-related issues.",
@@ -52,7 +52,7 @@
   },
   "About": {
     "seo_title": "YAHPA - About Us",
-    "seo_description": "Learn about what YAHPA (Young Asian Health Professional Association) is all about, our goals and the team behind it all.",
+    "seo_description": "Learn about what YAHPA (Young Asian Health Professionals Association) is all about, our goals and the team behind it all.",
     "page_title": "About Us",
     "page_description": "Learn about YAHPA's goals and motivation",
     "team_image_alt": "Our YAHPA Members",
@@ -152,7 +152,7 @@
   },
   "Projects": {
     "seo_title": "YAHPA - Projects",
-    "seo_description": "Learn more about the ongoing projects from YAHPA (Young Asian Health Professional Association) to support the asian community and healthcare professionals in Montreal through outreach events, translated resources, online conferences, and much more.",
+    "seo_description": "Learn more about the ongoing projects from YAHPA (Young Asian Health Professionals Association) to support the asian community and healthcare professionals in Montreal through outreach events, translated resources, online conferences, and much more.",
     "page_title": "Learn more about our upcoming projects ",
     "page_slug": "Projects",
     "page_description": "To support our community and the healthcare professionals that interact with them, we are working on projects like organizing outreaching events, translating health resources, online video conferences and much more.",
