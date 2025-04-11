@@ -101,8 +101,8 @@
       "social_work_student": "{gender, select, female {Étudiante en travail social} male {Étudiant en travail social} other {Étudiant(e) en travail social}}",
       "accountant": "Comptable"
     },
-    "history_title": "Notre histoire",
-    "history_description": "Une chronologie des plus grandes étapes et réalisations de YAHPA depuis sa création.",
+    "history_title": "Notre parcours jusqu’à présent",
+    "history_description": "Une chronologie des étapes clés et des projets majeurs de YAHPA depuis sa création.",
     "timeline": {
       "months": {
         "jan": "janvier",

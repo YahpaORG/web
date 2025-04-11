@@ -100,8 +100,8 @@
       "social_work_student": "Social Work Student",
       "accountant": "Accountant"
     },
-    "history_title": "Our History",
-    "history_description": "A timeline of YAHPA's biggest milestones and achievements since its founding.",
+    "history_title": "Our Journey So Far",
+    "history_description": "A timeline of YAHPA's biggest milestones and projects since its founding.",
     "timeline": {
       "months": {
         "jan": "January",
