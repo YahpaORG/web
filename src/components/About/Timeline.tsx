@@ -1,5 +1,6 @@
 import { Box, Container, Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import Image from 'components/Image'
+import Link from 'components/Link'
 import { useTranslations } from 'next-intl'
 import React from 'react'
 
@@ -85,6 +86,74 @@ export default function Timeline() {
         <Text textAlign="center">{t('history_description')}</Text>
       </Stack>
       <Stack alignItems="center" gap={0}>
+        <TimelineYear year={'2024'}>
+          <TimelineItem month={t('timeline.months.nov')}>
+            <Stack gap={12}>
+              <Box>
+                <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2}>
+                  {t('timeline.2024.nov.round_table.title')}
+                </Heading>
+                <Text mb={4}>
+                  {t('timeline.2024.nov.round_table.description')}
+                </Text>
+                <Image
+                  alt=""
+                  ratio={2 / 3}
+                  src="/images/timeline/2024_11_mental_health_round_table.png"
+                  width={{ base: '200px', sm: '280px', md: '320px' }}
+                  height={{ base: '480px' }}
+                  borderRadius="md"
+                />
+              </Box>
+              <Box>
+                <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2}>
+                  {t('timeline.2024.nov.walk.title')}
+                </Heading>
+                <Text mb={4}>{t('timeline.2024.nov.walk.description')}</Text>
+                <Image
+                  alt=""
+                  ratio={2 / 3}
+                  src="/images/timeline/2024_11_fall_walk.jpg"
+                  width={{ md: 'full' }}
+                  height={{ base: '200px' }}
+                  borderRadius="md"
+                />
+              </Box>
+            </Stack>
+          </TimelineItem>
+          <TimelineItem month={t('timeline.months.jul')}>
+            <Box>
+              <Heading as="h3" fontSize="xl" fontWeight="bold" mb={2}>
+                {t('timeline.2024.jul.table_tennis.title')}
+              </Heading>
+              <Text mb={4}>
+                {t('timeline.2024.jul.table_tennis.description')}
+              </Text>
+              <Image
+                alt=""
+                src="/images/timeline/2024_07_table_tennis.png"
+                width={{ base: '200px', sm: '280px', md: '320px' }}
+                height={{ base: '320px' }}
+                borderRadius="md"
+              />
+            </Box>
+          </TimelineItem>
+          <TimelineItem month={t('timeline.months.jun')}>
+            <Text mb={4}>{t('timeline.2024.jun.description')}</Text>
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLScRPo38ohAm1LyRTKR5tSiShGksS65SpkyI79U_J-b0c4K2SA/viewform?pli=1">
+              {t('timeline.2024.jun.link')}
+            </Link>
+          </TimelineItem>
+          <TimelineItem month={t('timeline.months.feb')}>
+            <Text mb={4}>{t('timeline.2024.feb.description')}</Text>
+            <Link href="https://drive.google.com/file/d/12F6UQFCY3eM3MheOMg0WfYI7qr6XYfOD/view?usp=sharing">
+              {t('timeline.2024.feb.link')}
+            </Link>
+            <Text fontStyle="italic" fontSize="sm">
+              {t('timeline.2024.feb.disclaimer')}
+            </Text>
+          </TimelineItem>
+        </TimelineYear>
         <TimelineYear year={'2023'}>
           <TimelineItem
             month={t('timeline.months.oct')}

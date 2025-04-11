@@ -118,6 +118,35 @@
         "nov": "novembre",
         "dec": "décembre"
       },
+      "2024": {
+        "feb": {
+          "title": "",
+          "description": "YAHPA est heureux de présenter un guide des ressources en santé à Montréal ! Naviguer dans le système de santé du Québec peut être complexe, et nous espérons que ce guide vous aidera à trouver les services qui répondent le mieux à vos besoins. Vous découvrirez des services de soins primaires, tels que des médecins de famille, des services d'urgence, ainsi que des dentistes et des optométristes.",
+          "link": "Voir le Guide des ressources en santé",
+          "disclaimer": "Avis de non-responsabilité : L’objectif est d’améliorer l’accès aux services de soins primaires dans la grande région de Montréal. Le contenu de ce document ne constitue pas un avis médical. Nous n’avons aucun conflit d’intérêts avec les organisations mentionnées dans ce document. Mis à jour au 27 février 2025."
+        },
+        "jun": {
+          "title": "",
+          "description": "YAHPA lance officiellement une campagne pour inviter davantage de professionnels de la santé de la grande région de Montréal à rejoindre son registre en ligne.",
+          "link": "Voir le formulaire en ligne pour s'inscrire"
+        },
+        "jul": {
+          "table_tennis": {
+            "title": "Tennis de table : Quatrième édition",
+            "description": "Revenez sur la quatrième édition de l’événement de tennis de table de YAHPA, rempli de nombreux participants et d’activités ! Nous avons passé un moment formidable à célébrer l’esprit de sportivité et de communauté. Un grand merci à toutes les personnes qui ont participé et rendu cet événement inoubliable."
+          }
+        },
+        "nov": {
+          "round_table": {
+            "title": "Table ronde sur le bien-être mental",
+            "description": "Notre Cercle de partage YAHPA a invité des Canadiens d’origine asiatique de toutes les générations à se rassembler pour engager un dialogue significatif sur leurs traumatismes intergénérationnels. Les participant·e·s ont exploré les complexités de l’identité culturelle, de la résilience et de la guérison. En partageant leurs récits personnels et en écoutant ceux des autres, nous avons pu favoriser la compréhension, l’empathie et le soutien communautaire."
+          },
+          "walk": {
+            "title": "Marche d’automne YAHPA",
+            "description": "Cet événement a été une occasion pour les membres de se connecter les uns avec les autres tout en pratiquant des activités physiques ludiques."
+          }
+        }
+      },
       "2023": {
         "jan": "YAHPA lance une campagne de recrutement pour élargir son réseau de bénévoles, à la recherche de personnes dévouées pour renforcer sa mission et accroître son influence. Avec une équipe actuelle de 30 membres, nous visons à élargir notre portée et à approfondir notre impact dans la communauté. ",
         "oct": "YAHPA présente \"Sip, Share, and Connect\", un événement de réseautage adapté aux professionnelles en soins, généreusement commandité par Desjardins, Mi Bao et OCHA"
