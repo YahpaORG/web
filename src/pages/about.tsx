@@ -1,6 +1,5 @@
 import AboutUsHero from 'components/About/AboutUsHero'
 import GoalsList from 'components/About/GoalsList'
-import Timeline from 'components/About/Timeline'
 import Leadership from 'components/About/Leadership'
 import Page from 'components/Page'
 import SEO from 'components/SEO'
@@ -29,7 +28,6 @@ export default function About() {
       <AboutUsHero />
       <Leadership />
       <GoalsList />
-      <Timeline />
     </Page>
   )
 }

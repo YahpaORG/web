@@ -100,8 +100,8 @@
       "social_work_student": "Social Work Student",
       "accountant": "Accountant"
     },
-    "history_title": "Our History",
-    "history_description": "A timeline of YAHPA's biggest milestones and achievements since its founding.",
+    "history_title": "Our Journey So Far",
+    "history_description": "A timeline of YAHPA's biggest milestones and projects since its founding.",
     "timeline": {
       "months": {
         "jan": "January",
@@ -116,6 +116,35 @@
         "oct": "October",
         "nov": "November",
         "dec": "December"
+      },
+      "2024": {
+        "feb": {
+          "title": "",
+          "description": "YAHPA is pleased to present a guide to healthcare resources in Montreal! Navigating Quebec's healthcare system can be complicated, and we hope this guide will help you find the services that best meet your needs. You'll discover primary care services, such as family doctors, emergency services, as well as dentists and optometrists.",
+          "link": "See Guide to Healthcare Resources",
+          "disclaimer": "Disclaimer: The goal is to improve access to primary care services in the Greater Montreal area. The content of this document does not constitute medical advice. We have no conflicts of interest with the organizations mentioned in this document. Updated as of February 27, 2025."
+        },
+        "jun": {
+          "title": "",
+          "description": "YAHPA officially launches a campaign to invite more healthcare professions in the Greater Montreal area to join its online registry.",
+          "link": "See Online Form to register"
+        },
+        "jul": {
+          "table_tennis": {
+            "title": "Table Tennis: Fourth Edition",
+            "description": "Revisit YAHPA’s fourth edition table tennis event filled with many participants and activities! We had an amazing time celebrating the spirit of sportsmanship and community. A big thank you to everyone who joined us and made the event unforgettable."
+          }
+        },
+        "nov": {
+          "round_table": {
+            "title": "Mental Wellness Round Table",
+            "description": "Our YAHPA Sharing Circle invited Asian Canadians from all generations to come together and engage in meaningful dialogue about their intergenerational trauma. Participants explored the complexities of cultural identity, resilience, and healing. By sharing personal narratives and listening to others, we were able to foster understanding, empathy, and community support."
+          },
+          "walk": {
+            "title": "YAHPA Fall Walk",
+            "description": "This event was an opportunity for members to connect with each other while doing some fun physical activities."
+          }
+        }
       },
       "2023": {
         "jan": "YAHPA launches a recruitment drive to broaden its volunteer network, seeking dedicated individuals to bolster its mission and enhance its influence. With a current team of 30 members, we aim to expand our reach and deepen our impact in the community.",

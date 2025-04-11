@@ -101,8 +101,8 @@
       "social_work_student": "Sinh viên công tác xã hội",
       "accountant": "Kế toán viên"
     },
-    "history_title": "Lịch sử của chúng tôi",
-    "history_description": "Dòng thời gian về các cột mốc và thành tựu lớn nhất của YAHPA kể từ khi thành lập.",
+    "history_title": "Hành Trình Của Chúng Tôi",
+    "history_description": "Dòng thời gian ghi lại những cột mốc quan trọng và dự án lớn của YAHPA kể từ khi thành lập.",
     "timeline": {
       "months": {
         "jan": "Tháng Một",
@@ -117,6 +117,35 @@
         "oct": "Tháng Mười",
         "nov": "Tháng Mười Một",
         "dec": "Tháng Mười Hai"
+      },
+      "2024": {
+        "feb": {
+          "title": "",
+          "description": "YAHPA hân hạnh giới thiệu một hướng dẫn về các nguồn tài nguyên y tế tại Montréal! Hệ thống chăm sóc sức khỏe của Québec có thể phức tạp, và chúng tôi hy vọng hướng dẫn này sẽ giúp bạn tìm được các dịch vụ phù hợp nhất với nhu cầu của mình. Bạn sẽ khám phá các dịch vụ chăm sóc ban đầu như bác sĩ gia đình, dịch vụ cấp cứu, cũng như nha sĩ và bác sĩ nhãn khoa.",
+          "link": "Xem Hướng Dẫn Tài Nguyên Y Tế",
+          "disclaimer": "Lưu ý: Mục tiêu là cải thiện khả năng tiếp cận dịch vụ chăm sóc ban đầu tại khu vực Đại Montréal. Nội dung tài liệu này không phải là lời khuyên y tế. Chúng tôi không có xung đột lợi ích với các tổ chức được đề cập trong tài liệu này. Cập nhật ngày 27 tháng 2 năm 2025."
+        },
+        "jun": {
+          "title": "",
+          "description": "YAHPA chính thức khởi động chiến dịch mời gọi thêm các chuyên gia y tế trong khu vực Đại Montréal tham gia danh bạ trực tuyến của mình.",
+          "link": "Xem Biểu Mẫu Đăng Ký Trực Tuyến"
+        },
+        "jul": {
+          "table_tennis": {
+            "title": "Bóng Bàn: Lần Thứ Tư",
+            "description": "Hãy cùng nhìn lại sự kiện bóng bàn lần thứ tư của YAHPA với nhiều người tham gia và hoạt động sôi nổi! Chúng tôi đã có khoảng thời gian tuyệt vời để tôn vinh tinh thần thể thao và cộng đồng. Chân thành cảm ơn tất cả những ai đã tham gia và làm cho sự kiện trở nên đáng nhớ."
+          }
+        },
+        "nov": {
+          "round_table": {
+            "title": "Tọa Đàm Sức Khỏe Tâm Thần",
+            "description": "Vòng tròn Chia sẻ YAHPA đã mời các người Canada gốc Á thuộc nhiều thế hệ cùng nhau tham gia cuộc đối thoại ý nghĩa về chấn thương tâm lý giữa các thế hệ. Những người tham gia đã khám phá những phức tạp của bản sắc văn hóa, sự kiên cường và quá trình chữa lành. Thông qua việc chia sẻ câu chuyện cá nhân và lắng nghe người khác, chúng tôi đã nuôi dưỡng sự thấu hiểu, đồng cảm và hỗ trợ cộng đồng."
+          },
+          "walk": {
+            "title": "Chuyến Đi Bộ Mùa Thu của YAHPA",
+            "description": "Sự kiện này là cơ hội để các thành viên kết nối với nhau trong khi tham gia vào các hoạt động thể chất thú vị."
+          }
+        }
       },
       "2023": {
         "jan": "YAHPA triển khai đợt tuyển dụng nhằm mở rộng mạng lưới tình nguyện viên, tìm kiếm những cá nhân tận tâm để củng cố sứ mệnh và nâng cao tầm ảnh hưởng của mình. Với đội ngũ hiện tại gồm 30 thành viên, chúng tôi mong muốn mở rộng phạm vi tiếp cận và tăng cường tác động của mình trong cộng đồng. ",
